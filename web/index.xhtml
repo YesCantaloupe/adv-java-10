@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Java EE and Frameworks</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="./templates/mainTemplate.xhtml">
+            <ui:define name="top">
+                Welcome to Java EE 7
+            </ui:define>
+            <ui:define name="left">
+                Navigation
+            </ui:define>
+            <ui:define name="content">
+                <h3>Kitties</h3>
+                <p:lightBox styleClass="imagebox">
+                    <h:outputLink value="./images/KITTY1.png" title="FIRST KITTY">
+                        <h:graphicImage value="/images/KITTY1_small.png"/>
+                    </h:outputLink>
+                    <h:outputLink value="./images/KITTY2.png" title="SECOND KITTY">
+                        <h:graphicImage value="/images/KITTY2_small.png"/>
+                    </h:outputLink>
+                    <h:outputLink value="./images/KITTY3.png" title="THIRD KITTY">
+                        <h:graphicImage value="/images/KITTY3_small.png"/>
+                    </h:outputLink>
+                    <h:outputLink value="./images/KITTY4.png" title="FOURTH KITTY">
+                        <h:graphicImage value="/images/KITTY4_small.png"/>
+                    </h:outputLink>
+                </p:lightBox>
+            </ui:define>
+            <ui:define name="bottom">
+                <h:link outcome="welcomePrimefaces" value="Primefaces welcome page"/>
+                <h:form id="form">
+                    <p:spacer height="10"/>
+                    <p:panel header="Match Mode">
+                        <p:messages id="messages" showDetail="true" autoUpdate="true"/>
+                        <h:panelGrid columns="2" id="matchGrid">
+                            <h:outputLabel for="pwd1" value="Password 1: *"/>
+                            <p:password id="pwd1" value="#{passwordBean.password5}"
+                                        match="pwd2" label="Password 1" required="true"/>
+                            <h:outputLabel for="pwd2" value="Password 2: *"/>
+                            <p:password id="pwd2" value="#{passwordBean.password5}"
+                                        label="Password 2" required="true"/>
+                        </h:panelGrid>
+                        <p:commandButton id="saveButton" update="matchGrid" value="Save"/>
+                    </p:panel>
+                </h:form>
+                <h:form id="extraControl1">
+                    <p:panel header="Exra Control 1: Inputtext">
+                        <p:spacer height="10"/>
+                        <p:inputText id="input"/>
+                    </p:panel>
+                </h:form>
+                <h:form id="extraControl2">
+                    <p:panel header="Exra Control 2: SelectOneListbox"> 
+                        <p:spacer height="10"/>
+                        <p:selectOneListbox id="listBox" value="#{selectOneView.option}">
+                            <f:selectItem itemLabel="Option 1" itemValue="1"/>
+                            <f:selectItem itemLabel="Option 2" itemValue="2"/>
+                            <f:selectItem itemLabel="Option 3" itemValue="3"/>
+                        </p:selectOneListbox>
+                    </p:panel>
+                </h:form>
+                <h:form id="extraControl3">
+                    <p:panel header="Exra Control 3: Tooltip">
+                        <p:spacer height="10"/>
+                        <h:panelGrid columns="3" cellpadding="5">
+                            <h:outputText value="Click textbox to display tooltip: "/>
+                            <p:inputText id="focus" title="This is a tooltip"/>
+                            <p:tooltip id="tooltipFocus" for="focus" showEvent="focus" hideEvent="blur"/>
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+                <h:form id="extraControl4">
+                    <p:panel header="Exra Control 4: Error Message">
+                        <p:spacer height="10"/>
+                        <p:tooltip/>
+                        <h:form>
+                            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+                            <p:commandButton value="Error Message" actionListener="#{messagesView.error}"/>
+                        </h:form>
+                    </p:panel>
+                </h:form>
+                <h:form id="extraControl5">
+                    <p:panel header="Exra Control 5: Media">
+                        <p:spacer height="10"/>
+                        <p:media value="http://www.youtube.com/v/2xxKwesCKJk" width="420" height="315" player="flash"/>
+                    </p:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
